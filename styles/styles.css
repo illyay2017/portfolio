@@ -7,9 +7,27 @@ html, body {
   padding: 0;
 }
 
+
+  /********************/
+ /**** TYPOGRAPHY ****/
+/********************/
+
+
 body {
   font-family: 'PT Sans', sans-serif;
   line-height: 1.6;
+  background-color: #8CC6FF;
+}
+
+a {
+  text-decoration: none;
+  color: #E2FC6D;
+  cursor: pointer;
+}
+
+a:hover {
+  color: #57E695;
+  text-decoration: wavy;
 }
 
 
@@ -44,4 +62,18 @@ body {
 
 .about-me {
   text-align: justify;
+}
+
+.nav {
+  position: absolute;
+}
+
+  /****************/
+ /**** STYLES ****/
+/****************/
+
+.nav-items {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
