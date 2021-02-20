@@ -1,0 +1,47 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'PT Sans', sans-serif;
+  line-height: 1.6;
+}
+
+
+  /****************/
+ /**** LAYOUT ****/
+/****************/
+
+.hero {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.container {
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.columns {
+  display: flex;
+  width: 100%;
+}
+
+.jobs {
+  flex-wrap: wrap;
+}
+
+.col {
+  margin: 2em;
+}
+
+.about-me {
+  text-align: justify;
+}
