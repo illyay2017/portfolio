@@ -8,4 +8,3 @@ myButton.addEventListener("click", function(e){
   myButton.classList.toggle('inverted');
   myButton.textContent = counter
 });
-
