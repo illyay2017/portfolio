@@ -1,14 +1,59 @@
-// Render the emojis as <span> tags in the emojisContainer <div>
+const myEmojis = ["👨‍🍼", "🧑‍💻", "🎛️", "🏎️", "⛷️", "🗺️"];
+const addEmojiBtns = document.querySelectorAll(".add-emoji-btn");
+const removeEmojiBtns = document.querySelectorAll(".remove-emoji-btn");
 
-// Hints: you can achieve this by creating an span with createElement(),
-// setting its content with textContent, and using append() to append it to the container
+addEmojiBtns.forEach((btn) => btn.addEventListener("click", addEmoji));
+removeEmojiBtns.forEach((btn) => btn.addEventListener("click", removeEmoji));
 
-const myEmojis = ["👨‍💻", "⛷", "🍲"];
-const emojiContainer = document.getElementById("emojiContainer")
-
-for (let i = 0; i < myEmojis.length; i++) {
-    // write your code here
-    let emojiSpan = document.createElement('span');
-    emojiSpan.textContent = myEmojis[i];
-    emojiContainer.appendChild(emojiSpan);
+function addEmoji(e){
+  const emojiInput = document.getElementById("emoji-input");
+  
+  if (emojiInput.value) {
+    const wasPushBtnClicked = e.target.id === "push-btn";
+    if (wasPushBtnClicked) {
+      myEmojis.push(emojiInput.value);
+    } else {
+      myEmojis.unshift(emojiInput.value);
+    }
+    emojiInput.value = "";
+    renderEmojis();
+  }
 }
+
+function removeEmoji(e){
+  if (myEmojis.length) {
+    const wasPopBtnClicked = e.target.id === "pop-btn";
+    if (wasPopBtnClicked) {
+      myEmojis.pop();
+    } else {
+      myEmojis.shift();
+    }
+  }
+  renderEmojis();
+}
+
+function renderEmojis() {
+    const emojiContainer = document.getElementById("emoji-container");
+    removeOldEmojisFromPage(emojiContainer);
+    addMyEmojisToPage(emojiContainer);
+}
+
+function removeOldEmojisFromPage(emojiContainer) {
+  removeChildNodes(emojiContainer);
+}
+
+function addMyEmojisToPage(emojiContainer) {
+  for (let i = 0; i < myEmojis.length; i++) {
+      const emoji = document.createElement('span')
+      emoji.textContent = myEmojis[i]
+      emojiContainer.append(emoji)
+  }
+}
+
+function removeChildNodes(htmlElement) {
+    while (htmlElement.firstChild) {
+        htmlElement.removeChild(htmlElement.firstChild);
+    }
+}
+
+renderEmojis();

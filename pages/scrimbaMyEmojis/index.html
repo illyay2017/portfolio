@@ -12,8 +12,17 @@
               <li><a href="../../pages/work-experience.html">Work Experience</a></li>
             </ul>
           </div>
-        <h1>My Emojis</h1>
-        <div id="emojiContainer"></div>
+        <h1>Illya's Emojis</h1>
+        <div id="emoji-container"></div>
+        <input type="text" id="emoji-input" placeholder="type an emoji 🎉">
+        <div class="buttons-wrapper">
+            <button id="unshift-btn" class="add-emoji-btn">Add to beginning</button>
+            <button id="push-btn" class="add-emoji-btn">Add to end</button>
+        </div>
+        <div class="buttons-wrapper">
+            <button id="shift-btn" class="remove-emoji-btn">Remove from beginning</button>
+            <button id="pop-btn" class="remove-emoji-btn">Remove from end</button>
+        </div>
         <script src="index.js"></script>
         <script src="../../scripts/shared-scripts.js"></script>
     </body>
