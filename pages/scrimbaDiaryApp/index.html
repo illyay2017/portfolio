@@ -1,0 +1,32 @@
+<html>
+
+<head>
+  <link href="../../styles/nav-style/nav-style.css" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+  <div class="nav">
+    <ul class="nav-items">
+      <li><a href="../../index.html">Home</a></li>
+      <li><a href="../../pages/about-me.html">About Me</a></li>
+      <li><a href="../../pages/work-experience.html">Work Experience</a></li>
+    </ul>
+  </div>
+  <!--
+            Change h1 title to "My Personal Diary"
+            Create a new form with an ID of "entryForm"
+            Inside the form, create a textarea with class of "entry-textbox"
+        -->
+  <h1 class="title">My Personal Diary</h1>
+  <form id="entry-form">
+    <textarea class="entry-textbox" placeholder="Click here to start typing..."></textarea><br/>
+    <button type="submit" class="button">Submit</button>
+  </form>
+
+  <section id="entries"></section>
+  <script src="index.js"></script>
+  <script src="../../scripts/shared-scripts.js"></script>
+</body>
+
+</html>
