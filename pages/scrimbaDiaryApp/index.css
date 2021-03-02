@@ -45,6 +45,20 @@ body {
    max-width: 18em;
    border-radius: 5px;
    margin-top: 1em;
- }
+}
 
- 
+.hide {
+  display: none;å
+}
+
+.entries-nav {
+  padding-bottom: 1em;
+}
+
+.display-entry-button {
+  margin: 0.2em;
+}
+
+.display-entry-button:hover {
+  cursor: pointer;
+}

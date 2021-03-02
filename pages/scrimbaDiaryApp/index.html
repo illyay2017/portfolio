@@ -20,11 +20,13 @@
         -->
   <h1 class="title">My Personal Diary</h1>
   <form id="entry-form">
-    <textarea class="entry-textbox" placeholder="Click here to start typing..."></textarea><br/>
+    <textarea class="entry-textbox" placeholder="Click here to start typing..." required></textarea><br/>
     <button type="submit" class="button">Submit</button>
   </form>
 
-  <section id="entries"></section>
+  <section id="entries">
+    <div class="entries-nav"></div>
+  </section>
   <script src="index.js"></script>
   <script src="../../scripts/shared-scripts.js"></script>
 </body>
