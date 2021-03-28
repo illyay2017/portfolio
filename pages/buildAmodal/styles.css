@@ -1,0 +1,55 @@
+html, body {
+  margin: 0;
+  padding: 50px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+
+#open-modal, #close-modal {
+  background-color: royalblue;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 0.5em 1em;
+  text-align: center;
+  font-size: 18px;
+}
+
+#open-modal:hover, #close-modal:hover, #open-modal:focus, #close-modal:focus {
+  cursor: pointer;
+}
+
+#modal {
+  top: 30%;
+  background-color: white;
+  padding: 20px;
+  height: 200px;
+  margin: 0 auto;
+  max-width: 600px;
+  position: relative;
+}
+
+/** 
+  Overlay: #overlay
+
+  1) Add a width and a height of 100%
+  2) Position absolute (allows us to place any element exactly where we want it)
+  3) Set top, left, bottom, right to 0
+  4) Add a background colour of black
+  5) Add position relative to #modal so that it's relative to #overlay
+  6) Put the background of #modal to white (temp background no longer needed)
+  7) Add top: 30% to #modal
+**/
+
+#overlay {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}

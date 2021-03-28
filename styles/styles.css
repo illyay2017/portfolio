@@ -39,6 +39,7 @@ a:hover {
   text-decoration: none;
   color: inherit;
   width: 33%;
+  /* flex-basis: 30%; */
 }
 
 
