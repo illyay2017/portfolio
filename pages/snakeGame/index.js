@@ -1,14 +1,18 @@
 const startButton = document.getElementById('start');
-const score = document.getElementById('#score');
+const score = document.getElementById('score');
 const grid = document.querySelector('.grid');
+let frequency = 1000; //amount of time between snake moves;
+let timerId;
 
 document.addEventListener('keydown', control);
+startButton.addEventListener('click', startGame);
 
 let squares = [];
 let currentSnake = [2, 1, 0];
 let direction = 1;
 let width = 10;
 let appleIndex = 0;
+let currentScore = 0;
 
 
 function createdGrid() {
@@ -31,21 +35,17 @@ function move() {
   squares[tail].classList.remove('snake');
   currentSnake.unshift(currentSnake[0] + direction);
 
-  // deal with snake eating apple
   if (hasEatenApple(currentSnake)) {
-
     squares[appleIndex].classList.remove('apple');
     growSnake(tail);
-    // grow snake by adding a square to it (class)
-    // grow snake array
-    // generate new apple
-    // add 1 point to the score
-    // speed up snake
+    currentSnake.push(tail);
+    generateApple();
+    updateScore();
+    speedUp();
   }
+
   squares[currentSnake[0]].classList.add('snake');
 }
-
-const timerId = setInterval(move, 1000);
 
 function control(e) {
   switch (e.key) {
@@ -66,15 +66,14 @@ function control(e) {
   }
 }
 
-function hasHitObstacle(snake) {
-  let head = snake[0];
-  // debugger;
+function hasHitObstacle(currentSnake) {
+  let head = currentSnake[0];
   if (
     hasHitBottomWallWhileTravelingDown(head) ||
     hasHitTopWallWhileTravelingUp(head) ||
     hasHitLeftWallWhileTravelingLeft(head) ||
     hasHitRightWallWhileTravelingRight(head) ||
-    hasHitSelf(snake)
+    hasHitSelf(head)
   ) {
     return true;
   } else {
@@ -83,11 +82,11 @@ function hasHitObstacle(snake) {
 }
 
 function hasHitBottomWallWhileTravelingDown(head) {
-  return head + width >= 100 && direction === width;
+  return head + width >= width * width && direction === width;
 }
 
 function hasHitTopWallWhileTravelingUp(head) {
-  return head - width <= 0 && direction === -width;
+  return head - width < 0 && direction === -width;
 }
 
 function hasHitLeftWallWhileTravelingLeft(head) {
@@ -95,19 +94,17 @@ function hasHitLeftWallWhileTravelingLeft(head) {
 }
 
 function hasHitRightWallWhileTravelingRight(head) {
-  return head % width - 1 === 0 && direction === 1;
+  return head % width === width - 1 && direction === 1;
 }
 
-function hasHitSelf(snake) {
-  if (squares[snake[0] + direction].classList.contains('snake')) {
-    console.log('hit self');
+function hasHitSelf(head) {
+  if (squares[head + direction].classList.contains('snake')) {
     return true;
   }
 }
 
-function generateApples() {
+function generateApple() {
   do {
-    // generate random number
     appleIndex = Math.floor(Math.random() * squares.length);
   } while (squares[appleIndex].classList.contains('snake'))
   squares[appleIndex].classList.add('apple');
@@ -121,6 +118,23 @@ function growSnake(tail) {
   squares[tail].classList.add('snake');
 }
 
+function updateScore(reset=false) {
+  reset ? currentScore = 0 : currentScore++;
+  score.textContent = currentScore;
+}
 
-generateApples();
+function speedUp() {
+  clearInterval(timerId);
+  frequency = frequency * 0.9; // 25% frequency increase (1000ms => 750 ms = faster move frequency)
+  timerId = setInterval(move, frequency);
+}
 
+generateApple();
+
+function startGame() {
+  clearInterval(timerId);
+  currentSnake = [2, 1, 0];
+  updateScore(true);
+  frequency = 1000;
+  timerId = setInterval(move, frequency);
+}
